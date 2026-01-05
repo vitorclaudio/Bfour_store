@@ -1,15 +1,15 @@
 {
-  "name": "fashioncube",
+  "name": "BFour-Store",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://quintuslabs.github.io/fashion-cube",
+  "homepage": "https://vitorclaudio.github.io/Bfour_store",
   "repository": {
     "type": "git",
-    "url": "https://github.com/quintuslabs/fashion-cube"
+    "url": "https://github.com/vitorclaudio/Bfour_store"
   },
   "keywords": [
-    "fashion",
-    "fashion-cube",
+    "Bfour",
+    "Bfour Store",
     "e-commerce",
     "shopping",
     "Shopping cart"
@@ -58,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "sass": "^1.97.1"
   }
 }

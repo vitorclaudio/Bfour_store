@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/Bfour_store/static/css/main.22a414dd.chunk.css",
+    "main.js": "/Bfour_store/static/js/main.25ebf19c.chunk.js",
+    "main.js.map": "/Bfour_store/static/js/main.25ebf19c.chunk.js.map",
+    "runtime-main.js": "/Bfour_store/static/js/runtime-main.29b76f93.js",
+    "runtime-main.js.map": "/Bfour_store/static/js/runtime-main.29b76f93.js.map",
+    "static/css/2.5fc0a91c.chunk.css": "/Bfour_store/static/css/2.5fc0a91c.chunk.css",
+    "static/js/2.484b9b30.chunk.js": "/Bfour_store/static/js/2.484b9b30.chunk.js",
+    "static/js/2.484b9b30.chunk.js.map": "/Bfour_store/static/js/2.484b9b30.chunk.js.map",
+    "index.html": "/Bfour_store/index.html",
+    "precache-manifest.f6e1eb89c82b6e4a62cf67769d58a6fd.js": "/Bfour_store/precache-manifest.f6e1eb89c82b6e4a62cf67769d58a6fd.js",
+    "service-worker.js": "/Bfour_store/service-worker.js",
+    "static/css/2.5fc0a91c.chunk.css.map": "/Bfour_store/static/css/2.5fc0a91c.chunk.css.map",
+    "static/css/main.22a414dd.chunk.css.map": "/Bfour_store/static/css/main.22a414dd.chunk.css.map",
+    "static/js/2.484b9b30.chunk.js.LICENSE.txt": "/Bfour_store/static/js/2.484b9b30.chunk.js.LICENSE.txt",
+    "static/media/banner_4.jpg": "/Bfour_store/static/media/banner_4.8b5a349c.jpg",
+    "static/media/banner_6.jpg": "/Bfour_store/static/media/banner_6.f2ff77f2.jpg",
+    "static/media/banner_7.jpg": "/Bfour_store/static/media/banner_7.012d93bb.jpg",
+    "static/media/deal_ofthe_week7.png": "/Bfour_store/static/media/deal_ofthe_week7.900a5aa9.png",
+    "static/media/emptyCart.png": "/Bfour_store/static/media/emptyCart.02800820.png",
+    "static/media/empty_cart.png": "/Bfour_store/static/media/empty_cart.abebef23.png",
+    "static/media/slider_4.jpg": "/Bfour_store/static/media/slider_4.ce37de1f.jpg",
+    "static/media/slider_5.jpg": "/Bfour_store/static/media/slider_5.c0366fd0.jpg",
+    "static/media/slider_6.jpg": "/Bfour_store/static/media/slider_6.68d2d4e1.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.29b76f93.js",
+    "static/css/2.5fc0a91c.chunk.css",
+    "static/js/2.484b9b30.chunk.js",
+    "static/css/main.22a414dd.chunk.css",
+    "static/js/main.25ebf19c.chunk.js"
+  ]
+}
