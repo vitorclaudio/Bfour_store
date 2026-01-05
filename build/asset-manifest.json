@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Bfour_store/static/css/main.22a414dd.chunk.css",
-    "main.js": "/Bfour_store/static/js/main.25ebf19c.chunk.js",
-    "main.js.map": "/Bfour_store/static/js/main.25ebf19c.chunk.js.map",
+    "main.js": "/Bfour_store/static/js/main.125dfb9b.chunk.js",
+    "main.js.map": "/Bfour_store/static/js/main.125dfb9b.chunk.js.map",
     "runtime-main.js": "/Bfour_store/static/js/runtime-main.29b76f93.js",
     "runtime-main.js.map": "/Bfour_store/static/js/runtime-main.29b76f93.js.map",
     "static/css/2.5fc0a91c.chunk.css": "/Bfour_store/static/css/2.5fc0a91c.chunk.css",
     "static/js/2.484b9b30.chunk.js": "/Bfour_store/static/js/2.484b9b30.chunk.js",
     "static/js/2.484b9b30.chunk.js.map": "/Bfour_store/static/js/2.484b9b30.chunk.js.map",
     "index.html": "/Bfour_store/index.html",
-    "precache-manifest.f6e1eb89c82b6e4a62cf67769d58a6fd.js": "/Bfour_store/precache-manifest.f6e1eb89c82b6e4a62cf67769d58a6fd.js",
+    "precache-manifest.deb4e5734f89977d3c7e0fdfeb99141e.js": "/Bfour_store/precache-manifest.deb4e5734f89977d3c7e0fdfeb99141e.js",
     "service-worker.js": "/Bfour_store/service-worker.js",
     "static/css/2.5fc0a91c.chunk.css.map": "/Bfour_store/static/css/2.5fc0a91c.chunk.css.map",
     "static/css/main.22a414dd.chunk.css.map": "/Bfour_store/static/css/main.22a414dd.chunk.css.map",
@@ -29,6 +29,6 @@
     "static/css/2.5fc0a91c.chunk.css",
     "static/js/2.484b9b30.chunk.js",
     "static/css/main.22a414dd.chunk.css",
-    "static/js/main.25ebf19c.chunk.js"
+    "static/js/main.125dfb9b.chunk.js"
   ]
 }

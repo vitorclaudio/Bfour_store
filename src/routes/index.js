@@ -42,7 +42,7 @@ class Routes extends Component {
 
     return (
       <div>
-        <Router ref={registerNav}>
+        <Router basename={process.env.PUBLIC_URL} ref={registerNav}>
           <Switch>
             {HomeRoutes.map((homeRoute, index) => {
               return (
