@@ -1,8 +1,3 @@
-/*
- ** Author: Santosh Kumar Dash
- ** Author URL: http://santoshdash.epizy.com/
- ** Github URL: https://github.com/quintuslabs/fashion-cube
- */
 
 import React, { Component } from "react";
 import LoginRegister from "../LoginRegisterModal";
@@ -46,7 +41,7 @@ class TopNavBar extends Component {
             <div className="col-md-6 text-right">
               <div className="top_nav_right">
                 <ul className="top_nav_menu">
-                  <li className="currency">
+                  { /*   <li className="currency">
                     <a href="#">
                       usd
                       <i className="fa fa-angle-down"></i>
@@ -65,7 +60,7 @@ class TopNavBar extends Component {
                         <a href="#">gbp</a>
                       </li>
                     </ul>
-                  </li>
+                  </li> */}
                   <li className="language">
                     <a href="#">
                       English
@@ -73,16 +68,7 @@ class TopNavBar extends Component {
                     </a>
                     <ul className="language_selection">
                       <li>
-                        <a href="#">French</a>
-                      </li>
-                      <li>
-                        <a href="#">Italian</a>
-                      </li>
-                      <li>
-                        <a href="#">German</a>
-                      </li>
-                      <li>
-                        <a href="#">Spanish</a>
+                        <a href="#">Portuguese</a>
                       </li>
                     </ul>
                   </li>
@@ -91,7 +77,7 @@ class TopNavBar extends Component {
                   Auth.getToken() !== undefined ? (
                     <li className="account">
                       <a href="#">
-                        {`Welcome ${Auth.getUserDetails().user_name}`}
+                        {`Welcome ${Auth.getUserDetails().full_name}`}
                         <i className="fa fa-angle-down"></i>
                       </a>
                       <ul className="account_selection">

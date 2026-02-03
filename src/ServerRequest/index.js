@@ -1,38 +1,31 @@
-/*
- ** Author: Santosh Kumar Dash
- ** Author URL: http://santoshdash.epizy.com/
- ** Github URL: https://github.com/quintuslabs/fashion-cube
- */
 
 import API from "../axios/API";
 import Auth from "../modules/Auth";
 
 export const login = async (email, password) => {
-  const body = {
-    credential: {
-      email: email,
-      password: password
-    }
-  };
+  console.log("Entrou no serverRequest login", email, " ", password);
+
   return await API({
     method: "POST",
-    url: "/users/login",
-    data: body
-  }).then(res => {
-    Auth.setUserToken(res.data.user_token);
+    url: "/api/auth/login",
+    data: { email, password }
+  }).then((res) => {
+    // Seu back retorna: { token, user: {...} }
+    Auth.setUserToken({
+      token: res.data.token,
+      user_id: res.data.user.id,
+      ...res.data.user
+    });
     return res;
   });
 };
+
 export const register = async (fullname, email, password, verifyPassword) => {
   return await API({
     method: "POST",
-    url: "/users/signin",
-    data: {
-      fullname,
-      email,
-      password,
-      verifyPassword
-    }
+    url: "/api/auth/register",
+    data: { full_name: fullname, email, password }
+
   }).then(res => {
     // Auth.setUserToken(res.data.user_token);
     console.log(res);

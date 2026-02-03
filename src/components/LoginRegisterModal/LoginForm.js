@@ -1,8 +1,3 @@
-/*
- ** Author: Santosh Kumar Dash
- ** Author URL: http://santoshdash.epizy.com/
- ** Github URL: https://github.com/quintuslabs/fashion-cube
- */
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
@@ -29,8 +24,7 @@ class LoginForm extends Component {
   };
 
   handleSubmit = () => {
-    // let email = "bob@bob.com";
-    // let password = "Ab123123";
+    console.log("HANDLE SUBMIT DISPAROU", this.state);
     const { email, password } = this.state;
     if (!Validator(email, EMAIL_RULE)) {
       console.log("email Error");
@@ -50,7 +44,8 @@ class LoginForm extends Component {
       })
       .catch(error => {
         // console.log('loginsignin error')
-        console.log(error.response);
+        console.log("STATUS", error.response?.status);
+        console.log("BODY", error.response?.data);
         this.setState({ loading: false });
       });
   };
@@ -59,7 +54,7 @@ class LoginForm extends Component {
     return (
       <div>
         <div className="login-form">
-          <h2>Login</h2>
+          <h2>Logins</h2>
           <div className="form-group ">
             <input
               type="text"
@@ -92,7 +87,7 @@ class LoginForm extends Component {
             href="#"
             onClick={this.props.forgotPasswordClicked}
           >
-            Lost your password?
+            Lost your passwords?
           </a>
           <LoadingButton
             type="button"

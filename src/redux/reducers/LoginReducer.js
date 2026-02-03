@@ -1,8 +1,4 @@
-/*
- ** Author: Santosh Kumar Dash
- ** Author URL: http://santoshdash.epizy.com/
- ** Github URL: https://github.com/quintuslabs/fashion-cube
- */
+
 
 import { LOGIN_BEGIN, LOGIN_SUCCESS, LOGIN_FAIL } from "../actions/LoginAction";
 

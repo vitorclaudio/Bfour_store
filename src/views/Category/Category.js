@@ -1,8 +1,4 @@
-/*
- ** Author: Santosh Kumar Dash
- ** Author URL: http://santoshdash.epizy.com/
- ** Github URL: https://github.com/quintuslabs/fashion-cube
- */
+
 
 import React, { Component } from "react";
 import SingleProduct from "../../components/Products/SingleProduct";
@@ -54,6 +50,7 @@ class Category extends Component {
   };
 
   render() {
+    console.log("Category props.products length:", (this.props.products || []).length);
     const { products, applyFilters } = this.props;
     console.log(this.props);
     return (
@@ -81,7 +78,12 @@ class Category extends Component {
             </div>
 
             <div className="sidebar">
-              <Filter applyFilters={applyFilters} />
+              <Filter
+                  applyFilters={applyFilters}
+                  getProductsByCategory={this.props.getProductsByCategory}
+                  getAllProducts={this.props.getAllProducts}
+              />
+
             </div>
             <div className="main_content">
               <div class="products_iso">
