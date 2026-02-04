@@ -4,3 +4,39 @@
     font-weight: 400;
     letter-spacing: 1px;
 }
+/* Dropdown do menu Shop */
+.navbar_menu .dropdown {
+    position: relative;
+}
+
+.navbar_menu .dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 9999;
+    min-width: 180px;
+}
+
+/* Mostrar ao passar o mouse */
+.navbar_menu .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Garantir que o header não corte o dropdown */
+.main_nav_container {
+    overflow: visible;
+}
+.navbar_menu .dropdown > a {
+    display: inline-flex;
+    align-items: center;
+}
+
+.navbar_menu .dropdown > a i {
+    margin-left: 8px;
+    font-size: 12px; /* opcional: seta um pouco menor */
+}
+.dropdown-menu li:first-child a {
+    font-weight: 600;
+}
+

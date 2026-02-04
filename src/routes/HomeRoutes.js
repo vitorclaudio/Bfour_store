@@ -28,10 +28,11 @@ var routes = [
     component: SingleProductContainer,
   },
   {
-    path: "/shops/:category",
+    path: "/shops/:category?",
     layout: BaseLayout,
     component: CategoryContainer,
   },
+
 ];
 
 export default routes;

@@ -22,10 +22,13 @@ class NavBar extends Component {
 
 
   componentDidMount() {
-    if (Object.keys(this.props.cart).length < 1) {
-      this.props.getCartByUserId();
+    this.props.getAllCategories && this.props.getAllCategories();
+
+    if (!this.props.cart || Object.keys(this.props.cart).length < 1) {
+      this.props.getCartByUserId && this.props.getCartByUserId();
     }
   }
+
 
   showHideModal = () => {
     this.setState({ modalShow: !this.state.modalShow });
@@ -84,7 +87,8 @@ class NavBar extends Component {
 
 
   render() {
-    const { departments, cart } = this.props;
+    const { departments } = this.props;
+    const cart = this.props.cart || {};
 
     return (
         <div className="main_nav_container">
@@ -103,35 +107,39 @@ class NavBar extends Component {
                       <Link to="/home">home</Link>
                     </li>
 
-                    <li className="mega-drop-down">
+                    <li className="dropdown">
                       <a href="#" onClick={(e) => e.preventDefault()}>
-                        shop <i className="fa fa-angle-down"></i>
+                        Shop
+                        <i className="fa fa-angle-down"></i>
                       </a>
 
-                      <div className="mega-menu">
-                        <div className="mega-menu-wrap">
-                          {departments &&
-                              departments.map((item, index) => {
-                                return (
-                                    <div className="mega-menu-content" key={index}>
-                                      <h5>{item.departmentName}</h5>
-                                      <ul className="stander">
-                                        {item.categories.split(",").map((i, idx) => {
-                                          return (
-                                              <li key={idx}>
-                                                <a href={`/shops/${item.departmentName}/${i}`}>
-                                                  {i}
-                                                </a>
-                                              </li>
-                                          );
-                                        })}
-                                      </ul>
-                                    </div>
-                                );
-                              })}
-                        </div>
-                      </div>
+                      <ul className="dropdown-menu">
+                        {/* All Products – sempre no topo */}
+                        <li>
+                          <Link to="/shops">
+                            All Products
+                          </Link>
+                        </li>
+
+                        {this.props.loadingCategories && (
+                            <li>
+                              <a href="#" onClick={(e) => e.preventDefault()}>
+                                Loading...
+                              </a>
+                            </li>
+                        )}
+
+                        {!this.props.loadingCategories &&
+                            (this.props.categories || []).map((c) => (
+                                <li key={c.id}>
+                                  <Link to={`/shops/${encodeURIComponent(c.slug || c.name)}`}>
+                                    {c.name}
+                                  </Link>
+                                </li>
+                            ))}
+                      </ul>
                     </li>
+
 
                     <li>
                       <a href="#" onClick={this.openContactModal}>
@@ -156,7 +164,7 @@ class NavBar extends Component {
                         e.preventDefault();
                         this.showHideModal();
                       }}>
-                        <i className="fas fa-shopping-bag"></i>
+                      <i className="fas fa-shopping-bag"></i>
                         {cart.totalQty !== undefined && (
                             <span id="checkout_items" className="checkout_items">
                           {cart.totalQty}

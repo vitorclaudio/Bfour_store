@@ -90,12 +90,22 @@ export const getProductsByCategory = (c) => (dispatch) => {
         .then((res) => {
             const cat = String(c || "").trim().toLowerCase();
             const products = (res.data && res.data.products) || [];
+
             const filtered = !cat
                 ? products
                 : products.filter((p) => {
                     const dept = String(p.department || "").toLowerCase();
                     const category = String(p.category || "").toLowerCase();
-                    return dept.includes(cat) || category.includes(cat);
+                    const categoryName = String(p.categoryName || "").toLowerCase();
+
+                    return (
+                        dept === cat ||
+                        category === cat ||
+                        categoryName === cat ||
+                        dept.includes(cat) ||
+                        category.includes(cat) ||
+                        categoryName.includes(cat)
+                    );
                 });
 
             const shaped = { data: { products: filtered } };
@@ -107,6 +117,7 @@ export const getProductsByCategory = (c) => (dispatch) => {
             return error;
         });
 };
+
 
 export const getProduct = (id) => (dispatch) => {
     dispatch({ type: GET_PRODUCT_BEGIN });
