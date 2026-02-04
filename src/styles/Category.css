@@ -41,3 +41,16 @@
 .sorting_type .type_sorting_btn {
     cursor: pointer;
 }
+.category-pagination .page_selection a.is-active-page {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.category-pagination a.is-disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.category-pagination-prev-margin{
+    margin-right: 30px;
+}

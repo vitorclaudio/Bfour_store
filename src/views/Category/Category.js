@@ -12,7 +12,9 @@ class Category extends Component {
             modalShow: false,
             login: true,
             searchText: "",
-            sortBy: "default" // "default" | "price" | "name"
+            sortBy: "default", // "default" | "price" | "name"
+            currentPage: 1,
+            itemsPerPage: 8
         };
         this.addToBag = this.addToBag.bind(this);
     }
@@ -31,7 +33,7 @@ class Category extends Component {
         const currentCategory = this.props.match?.params?.category;
 
         if (prevCategory !== currentCategory) {
-            this.setState({ searchText: "" });
+            this.setState({ searchText: "", currentPage: 1 });
 
             if (currentCategory) {
                 this.props.getProductsByCategory && this.props.getProductsByCategory(currentCategory);
@@ -67,11 +69,27 @@ class Category extends Component {
     }
 
     handleSearchChange = (e) => {
-        this.setState({ searchText: e.target.value });
+        this.setState({ searchText: e.target.value, currentPage: 1 });
     };
 
     setSort = (sortBy) => {
-        this.setState({ sortBy });
+        this.setState({ sortBy, currentPage: 1 });
+    };
+
+    setPage = (page) => {
+        this.setState({ currentPage: page });
+    };
+
+    nextPage = (totalPages) => {
+        this.setState((prev) => ({
+            currentPage: Math.min(prev.currentPage + 1, totalPages)
+        }));
+    };
+
+    prevPage = () => {
+        this.setState((prev) => ({
+            currentPage: Math.max(prev.currentPage - 1, 1)
+        }));
     };
 
     // tenta achar um campo de preço nos seus produtos
@@ -86,7 +104,6 @@ class Category extends Component {
             p.VLRUNTLIQVND ??
             0;
 
-        // se vier string tipo "R$ 199,90" ou "199.90"
         if (typeof raw === "string") {
             const normalized = raw
                 .replace(/\s/g, "")
@@ -123,7 +140,6 @@ class Category extends Component {
         const arr = [...(list || [])];
 
         if (sortBy === "price") {
-            // menor preço primeiro (se quiser maior->menor, inverte no compare)
             arr.sort((a, b) => this.getPriceNumber(a) - this.getPriceNumber(b));
             return arr;
         }
@@ -133,7 +149,6 @@ class Category extends Component {
             return arr;
         }
 
-        // default: mantém ordem original (não faz sort)
         return arr;
     };
 
@@ -144,9 +159,45 @@ class Category extends Component {
         return "Default Sorting";
     };
 
+    renderPageNumbers = (totalPages) => {
+        const { currentPage } = this.state;
+
+        const pages = [];
+        for (let i = 1; i <= totalPages; i++) {
+            pages.push(
+                <li key={i}>
+                    <a
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            this.setPage(i);
+                        }}
+                        className={currentPage === i ? "is-active-page" : ""}
+                    >
+                        {i}
+                    </a>
+                </li>
+            );
+        }
+        return pages;
+    };
+
     render() {
         const filtered = this.getFilteredProducts();
         const productsFiltered = this.getSortedProducts(filtered);
+
+        const { currentPage, itemsPerPage } = this.state;
+
+        const totalPages = Math.max(1, Math.ceil(productsFiltered.length / itemsPerPage));
+        const safeCurrentPage = Math.min(currentPage, totalPages);
+
+        const startIndex = (safeCurrentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+
+        const pageProducts = productsFiltered.slice(startIndex, endIndex);
+
+        const showingFrom = productsFiltered.length === 0 ? 0 : startIndex + 1;
+        const showingTo = Math.min(endIndex, productsFiltered.length);
 
         return (
             <div className="container product_section_container">
@@ -230,51 +281,61 @@ class Category extends Component {
 
                                 {/* PRODUCTS */}
                                 <div className="row">
-                                    {productsFiltered.slice(0, 8).map((item, index) => (
-                                        <div className="col-lg-3 col-sm-6" key={index} data-aos="zoom-in">
+                                    {pageProducts.map((item, index) => (
+                                        <div className="col-lg-3 col-sm-6" key={startIndex + index} data-aos="zoom-in">
                                             <SingleProduct productItem={item} addToBag={this.addToBag} />
                                         </div>
                                     ))}
                                 </div>
 
+                                {/* BOTTOM */}
                                 <div className="product_sorting_container product_sorting_container_bottom clearfix">
                   <span className="showing_results">
-                    Showing 1–{Math.min(8, productsFiltered.length)} of {productsFiltered.length} results
+                    Showing {showingFrom}–{showingTo} of {productsFiltered.length} results
                   </span>
 
                                     <div className="pages d-flex flex-row align-items-center category-pagination">
+                                        {/* Prev */}
+                                        <div className="page_next page_prev category-pagination-prev-margin">
+                                            <a
+                                                href="#"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    this.prevPage();
+                                                }}
+                                                aria-disabled={safeCurrentPage === 1}
+                                                className={safeCurrentPage === 1 ? "is-disabled" : ""}
+                                            >
+                                                <i className="fas fa-long-arrow-alt-left" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+
                                         <div className="page_current">
-                                            <span>1</span>
-                                            <ul className="page_selection">
-                                                <li>
-                                                    <a href="#" onClick={(e) => e.preventDefault()}>
-                                                        1
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" onClick={(e) => e.preventDefault()}>
-                                                        2
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" onClick={(e) => e.preventDefault()}>
-                                                        3
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            <span>{safeCurrentPage}</span>
+                                            <ul className="page_selection">{this.renderPageNumbers(totalPages)}</ul>
                                         </div>
 
                                         <div className="page_total">
-                                            <span>of</span> 3
+                                            <span>of</span> {totalPages}
                                         </div>
 
+                                        {/* Next */}
                                         <div className="page_next">
-                                            <a href="#" onClick={(e) => e.preventDefault()}>
+                                            <a
+                                                href="#"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    this.nextPage(totalPages);
+                                                }}
+                                                aria-disabled={safeCurrentPage === totalPages}
+                                                className={safeCurrentPage === totalPages ? "is-disabled" : ""}
+                                            >
                                                 <i className="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
