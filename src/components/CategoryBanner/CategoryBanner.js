@@ -4,6 +4,7 @@ import React from "react";
 import Banner1 from "../../assets/images/banner_4.jpg";
 import Banner2 from "../../assets/images/banner_7.jpg";
 import Banner3 from "../../assets/images/banner_6.jpg";
+import {Link} from "react-router-dom";
 
 function CategoryBanner(props) {
   return (
@@ -19,7 +20,11 @@ function CategoryBanner(props) {
               data-aos="fade-right"
             >
               <div className="banner_category">
-                <a href="categories.html">Evening Gowns</a>
+                <a href="categories.html">
+                  <Link to={`/shops/accessories`}>
+                    Acessories
+                  </Link></a>
+
               </div>
             </div>
           </div>
@@ -32,7 +37,11 @@ function CategoryBanner(props) {
               data-aos="fade-up"
             >
               <div className="banner_category">
-                <a href="categories.html">Cocktail Dresses</a>
+                <a href="categories.html">
+                  <Link to={`/shops`}>
+                    All Products
+                  </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -45,7 +54,11 @@ function CategoryBanner(props) {
               data-aos="fade-left"
             >
               <div className="banner_category">
-                <a href="categories.html">Special Occasions</a>
+                <a href="categories.html">
+                  <Link to={`/shops/dresses`}>
+                    Dresses
+                  </Link>
+                </a>
               </div>
             </div>
           </div>
